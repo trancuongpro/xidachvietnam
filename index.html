@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xì Dách Việt Nam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgMusic" src="xidach.mp3" loop></audio>
+
+    <div id="welcome-screen" class="screen">
+        <div class="welcome-content">
+            <h1>Xin Chào Bạn Đến Với<br>Xì Dách Việt Nam</h1>
+            <button class="btn-start" onclick="showSetup()">VÀO CHƠI</button>
+        </div>
+    </div>
+
+    <div id="setup-screen" class="screen hidden">
+        <h2>Chọn Người Chơi</h2>
+        <div class="seat-setup" id="seat-setup"></div>
+        <button class="btn-enter" onclick="enterTable()">VÀO BÀN</button>
+    </div>
+
+    <div id="game-screen" class="screen hidden">
+        <div id="bank-info" style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 10px; font-size: 12px; color: gold;">
+            Nhà Cái: $<span id="dealer-money">5000</span>
+        </div>
+
+        <div class="info hidden" id="info"></div>
+
+        <div class="game-container">
+            <div class="table" id="table">
+                <div class="deck-center" id="deck-center">
+                    <div class="card back">🃏</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="guideBtn" onclick="showGuide()" style="background: #ff4444; color: white;">Hướng Dẫn</button>
+                <button id="dealBtn" onclick="dealCards()">Chia Bài</button>
+                <button id="hitBtn" onclick="hit()" disabled>Rút Bài</button>
+                <button id="checkBtn" onclick="checkCards()" disabled>Kiểm Bài</button>
+                <button id="resultBtn" onclick="showFinalResult()" disabled>Kết Quả</button>
+                
+                <div id="music-toggle" onclick="toggleMusic()" class="music-icon">🔇</div>
+                
+                <button onclick="backToSetup()">Thoát</button>
+            </div>
+            
+            <footer class="game-footer">
+                Thiết Kế Trần Cường - Zalo: 0907860662
+            </footer>
+        </div>
+    </div>
+
+    <div id="guide-overlay" class="screen hidden" style="z-index: 200; background: rgba(0,0,0,0.9);">
+        <div style="background: #7a0000; border: 4px solid gold; padding: 25px; border-radius: 20px; text-align: center; max-width: 85%;">
+            <h2 style="color: gold; margin-bottom: 15px;">HƯỚNG DẪN</h2>
+            <p id="guide-text" style="text-align: left; font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;"></p>
+            <button class="btn-enter" onclick="closeGuide()">ĐÃ HIỂU</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
