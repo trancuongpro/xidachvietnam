@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
-*{ margin:0; padding:0; box-sizing:border-box; user-select:none; }
+/* CẬP NHẬT: Chặn quét khối và tối ưu trải nghiệm không copy */
+*{ 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box; 
+    user-select:none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    -webkit-touch-callout: none; /* Chặn menu khi nhấn giữ trên điện thoại */
+}
 
 body{
     font-family:'Roboto',sans-serif;
@@ -10,6 +20,7 @@ body{
     height:100vh;
 }
 
+/* Các phần còn lại giữ nguyên như source cũ của bạn */
 .screen{
     position:fixed; inset:0;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -98,7 +109,6 @@ body{
 .player-position .cards { display: flex; gap: -15px; }
 .player-position .card { margin: 0 -10px; }
 
-/* CSS CHO FOOTER */
 .game-footer {
     position: absolute;
     bottom: 5px;

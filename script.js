@@ -102,8 +102,9 @@ function createPositions() {
     ];
 
     for (let i = 1; i <= 5; i++) {
-        const selEl = document.getElementById(`pos${i}`).querySelector('select');
-        const select = selEl ? selEl.value : 'empty';
+        const posEl = document.getElementById(`pos${i}`);
+        if (!posEl) continue;
+        const select = posEl.querySelector('select').value;
         if (select === 'empty') continue;
         const pMoney = savedMoney.find(m => m.id === i)?.money ?? 200;
         const pos = document.createElement('div');
@@ -122,7 +123,6 @@ function dealCards() {
     document.getElementById('dealBtn').disabled = true;
     document.getElementById('hitBtn').disabled = false;
     document.getElementById('checkBtn').disabled = false;
-    // Đảm bảo nút Kết Quả luôn tắt khi bắt đầu chia bài
     document.getElementById('resultBtn').disabled = true; 
 }
 
@@ -144,7 +144,6 @@ function checkCards() {
         renderPlayer(p);
     }
     document.getElementById('checkBtn').disabled = true;
-    // MỞ KHÓA nút Kết Quả sau khi đã kiểm bài xong
     document.getElementById('resultBtn').disabled = false; 
 }
 
@@ -250,3 +249,22 @@ window.onload = () => {
         }
     }
 };
+
+// ==========================================
+// ĐOẠN CODE BẢO VỆ SOURCE (CHẶN CHUỘT PHẢI & COPY)
+// ==========================================
+
+// 1. Chặn menu chuột phải
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// 2. Chặn các phím tắt copy, lưu web, xem source (Trừ F12)
+document.addEventListener('keydown', function(e) {
+    // Chặn Ctrl+C (Copy), Ctrl+U (View Source), Ctrl+S (Save), Ctrl+A (Select All)
+    if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 65)) {
+        e.preventDefault();
+        return false;
+    }
+}, false);
+
+// 3. Chặn kéo thả hình ảnh/thành phần
+document.addEventListener('dragstart', event => event.preventDefault());
