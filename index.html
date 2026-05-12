@@ -13,14 +13,8 @@
     <div id="welcome-screen" class="screen">
         <div class="welcome-content">
             <h1>Xin Chào Bạn Đến Với<br>Xì Dách Việt Nam</h1>
-            <button class="btn-start" onclick="showSetup()">VÀO CHƠI</button>
+            <button class="btn-start" onclick="enterTable()">VÀO CHƠI</button>
         </div>
-    </div>
-
-    <div id="setup-screen" class="screen hidden">
-        <h2>Chọn Người Chơi</h2>
-        <div class="seat-setup" id="seat-setup"></div>
-        <button class="btn-enter" onclick="enterTable()">VÀO BÀN</button>
     </div>
 
     <div id="game-screen" class="screen hidden">
@@ -30,10 +24,15 @@
 
         <div class="info hidden" id="info"></div>
 
+        <div id="warning-box" class="info hidden" style="border-color: gold; background: #7a0000; color: white;">
+            <p id="warning-message" style="margin-bottom: 15px; font-weight: bold;"></p>
+            <button class="btn-newgame" onclick="hitAndCloseWarning()">Rút Bài</button>
+        </div>
+
         <div class="game-container">
             <div class="table" id="table">
                 <div class="deck-center" id="deck-center">
-                    <div class="card back">🃏</div>
+                    <div class="card card-hidden-main"></div>
                 </div>
             </div>
 
@@ -42,7 +41,7 @@
                 <button id="dealBtn" onclick="dealCards()">Chia Bài</button>
                 <button id="hitBtn" onclick="hit()" disabled>Rút Bài</button>
                 <button id="checkBtn" onclick="checkCards()" disabled>Kiểm Bài</button>
-                <button id="resultBtn" onclick="showFinalResult()" disabled>Kết Quả</button>
+                <button id="resultBtn" onclick="validateDealerScore()" disabled>Kết Quả</button>
                 
                 <div id="music-toggle" onclick="toggleMusic()" class="music-icon">🔇</div>
                 
