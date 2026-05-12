@@ -201,16 +201,28 @@ function checkCards() {
 function validateDealerScore() {
     const dealer = players[0];
     const hand = checkHandType(dealer.cards);
+
     const isSpecial = hand.power === 100 || hand.power === 0;
     const isFiveCards = dealer.cards.length === 5;
+
+    // Nếu chưa đủ 16 điểm thì không cho xem kết quả
     if (hand.score < 16 && !isSpecial && !isFiveCards) {
         const warnBox = document.getElementById('warning-box');
         const warnMsg = document.getElementById('warning-message');
+
         warnMsg.innerText = "Vì Bạn Chưa Đủ 16 Điểm Nên Việc Thống Kê Là Không Hợp Lệ Mời Bạn Kéo Bài Thêm Nhé !...";
+
         warnBox.classList.remove('hidden');
         return;
     }
+
+    // Đủ điều kiện xem kết quả thì khóa toàn bộ nút thao tác
+    document.getElementById('hitBtn').disabled = true;
+    document.getElementById('checkBtn').disabled = true;
+    document.getElementById('resultBtn').disabled = true;
+
     isGameOver = true;
+
     showFinalResult();
 }
 
